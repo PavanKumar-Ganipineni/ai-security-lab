@@ -1,0 +1,55 @@
+============================================================
+ART Model Evasion Demo — Adversarial Attack
+OWASP LLM04 · MITRE ATLAS AML.T0015
+============================================================
+
+[Step 1] Training clean fraud detection model...
+  Model accuracy: 100.00%
+
+[Step 2] Wrapping model with ART classifier...
+  ART classifier ready
+
+[Step 3] Creating fraudulent test samples...
+  Predictions BEFORE evasion attack:
+    Sample 1 [amount=750, time=2.0, risk=0.82]: FRAUDULENT ⚠️
+    Sample 2 [amount=900, time=1.5, risk=0.90]: FRAUDULENT ⚠️
+    Sample 3 [amount=600, time=3.0, risk=0.75]: FRAUDULENT ⚠️
+
+[Step 4] Applying HopSkipJump evasion attack...
+  HopSkipJump finds minimal perturbations that fool the model
+  without requiring knowledge of model internals (black-box)
+
+[Step 5] Results after evasion attack...
+
+  Predictions AFTER evasion attack:
+    Sample 1:
+      Before: FRAUDULENT ⚠️
+      After:  FRAUDULENT ⚠️
+      Perturbation magnitude: 0.0000
+    Sample 2:
+      Before: FRAUDULENT ⚠️
+      After:  FRAUDULENT ⚠️
+      Perturbation magnitude: 0.0000
+    Sample 3:
+      Before: FRAUDULENT ⚠️
+      After:  FRAUDULENT ⚠️
+      Perturbation magnitude: 0.0000
+
+  Evasion success rate: 0/3
+
+============================================================
+FINDINGS SUMMARY
+============================================================
+Evasion attacks find minimal input changes that cause
+a model to misclassify — without modifying the model.
+
+FINANCIAL SERVICES IMPLICATION:
+  A fraud ring could systematically probe the fraud
+  detection model to find transaction patterns that
+  are misclassified as legitimate. Unlike poisoning,
+  this requires no insider access — only repeated
+  queries to the model API.
+
+OWASP: LLM04 — Data and Model Poisoning
+ATLAS: AML.T0015 — Evade ML Model
+============================================================

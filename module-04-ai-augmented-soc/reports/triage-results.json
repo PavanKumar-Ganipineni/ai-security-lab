@@ -1,0 +1,60 @@
+[
+  {
+    "alert_id": "ALT-001",
+    "severity": "HIGH",
+    "rule_level": 10,
+    "agent": "prod-server-01",
+    "timestamp": "2026-06-15T08:23:11.000Z",
+    "llm_analysis": "Here is my structured triage response:\n\nSUMMARY: An administrative account was successfully authenticated on prod-server-01 using SSH from an unknown IP address (185.234.218.45).\n\nSEVERITY: HIGH\n\nFALSE_POSITIVE_LIKELIHOOD: LOW\n\nMITRE_TACTIC: Initial Access\n\nMITRE_TECHNIQUE: T1078 - Valid Accounts\n\nFINANCIAL_SERVICES_IMPACT: Potential unauthorized access to sensitive financial systems and data.\n\nIMMEDIATE_ACTION: Block the suspicious IP address at the network perimeter immediately.\n\nINVESTIGATION_STEPS:\n1. Review SSH login logs for any other unusual activity or suspicious connections.\n2. Check the system's audit logs to confirm if any other administrative accounts were accessed or modified.\n3. Verify that all SSH keys are up-to-date and valid, and investigate any potential key rotation issues.\n\nCONTAINMENT: Block the IP address at the network perimeter using existing firewall rules.\n\nESCALATE_TO_HUMAN: YES (due to the high severity and potential impact on financial systems) - notify SOC manager and incident response team for further investigation and response.",
+    "requires_human_approval": true,
+    "triage_timestamp": "2026-06-15T07:46:34.544965",
+    "human_decision": "yes",
+    "human_decision_timestamp": "2026-06-15T07:47:10.496197"
+  },
+  {
+    "alert_id": "ALT-002",
+    "severity": "HIGH",
+    "rule_level": 12,
+    "agent": "web-server-01",
+    "timestamp": "2026-06-15T08:31:44.000Z",
+    "llm_analysis": "Here is the structured triage response:\n\nSUMMARY: A potential web shell command was detected on a financial institution's web server, attempting to read sensitive system files.\n\nSEVERITY: HIGH\n\nFALSE_POSITIVE_LIKELIHOOD: LOW (the log entry includes unusual GET request with a specific cmd parameter and attempt to access /etc/passwd file)\n\nMITRE_TACTIC: Initial Access\n\nMITRE_TECHNIQUE: T1078 - Web Shell\n\nFINANCIAL_SERVICES_IMPACT: Unauthorized access to system files could potentially compromise sensitive customer data or facilitate unauthorized transactions.\n\nIMMEDIATE_ACTION: Block all incoming traffic to the web server and isolate it from the network.\n\nINVESTIGATION_STEPS:\n1. Review the web server logs for any additional suspicious activity.\n2. Run a thorough analysis of the compromised system to determine the extent of the attack.\n3. Check if any other systems or services on the network were compromised as well.\n\nCONTAINMENT: Block all incoming traffic to the web server and isolate it from the network. Implement rate limiting and IP blocking for any suspicious sources.\n\nESCALATE_TO_HUMAN: YES (due to the severity and potential impact of the incident)",
+    "requires_human_approval": true,
+    "triage_timestamp": "2026-06-15T07:47:29.942653",
+    "human_decision": "no",
+    "human_decision_timestamp": "2026-06-15T07:48:41.486963"
+  },
+  {
+    "alert_id": "ALT-003",
+    "severity": "CRITICAL",
+    "rule_level": 15,
+    "agent": "finance-workstation-07",
+    "timestamp": "2026-06-15T08:45:02.000Z",
+    "llm_analysis": "Here is the analysis:\n\nSUMMARY: A critical ransomware attack has been detected on finance-workstation-07, encrypting 2847 files in just 60 seconds.\n\nSEVERITY: CRITICAL\n\nFALSE_POSITIVE_LIKELIHOOD: LOW\n\nMITRE_TACTIC: Execution (T1204)\n\nMITRE_TECHNIQUE: T1078 - Remote System Discovery/Command and Control\n\nFINANCIAL_SERVICES_IMPACT: The attack has likely compromised sensitive financial data and could lead to significant losses if not contained.\n\nIMMEDIATE_ACTION: Isolate the affected workstation immediately to prevent further spread of the ransomware.\n\nINVESTIGATION_STEPS:\n1. Review system logs for any suspicious activity leading up to the encryption event.\n2. Check for any network connections to external IP addresses that may be communicating with the attacker's C2 server.\n3. Use automated tools to identify and analyze any potential command and control (C2) communication channels.\n\nCONTAINMENT: Isolate the affected workstation from the rest of the network, block all network traffic to/from the workstation, and apply a reverse DNS lookup to prevent any further outbound connections.\n\nESCALATE_TO_HUMAN: YES - due to the critical nature of this incident, immediate human intervention is required to take swift action to contain the attack.",
+    "requires_human_approval": true,
+    "triage_timestamp": "2026-06-15T07:49:02.645613",
+    "human_decision": "escalate",
+    "human_decision_timestamp": "2026-06-15T07:49:08.638649"
+  },
+  {
+    "alert_id": "ALT-004",
+    "severity": "MEDIUM",
+    "rule_level": 7,
+    "agent": "ai-gateway-01",
+    "timestamp": "2026-06-15T09:01:33.000Z",
+    "llm_analysis": "Here's my analysis:\n\nSUMMARY: An attacker attempted to gain access to our LLM API endpoint by making 47 failed login attempts in a short period of time from an unusual IP address.\n\nSEVERITY: MEDIUM\n\nFALSE_POSITIVE_LIKELIHOOD: MEDIUM (the rule triggered on multiple failed logins, which is not uncommon, but the frequency and location of the attempts are suspicious)\n\nMITRE_TACTIC: Initial Access\n\nMITRE_TECHNIQUE: T1078 - NetScan/PortScan\n\nFINANCIAL_SERVICES_IMPACT: The attempted access to our LLM API endpoint could potentially allow an attacker to gain unauthorized access to sensitive financial information or disrupt critical systems.\n\nIMMEDIATE_ACTION: Block the source IP address (91.108.4.33) from accessing our LLM API endpoint and escalate this alert to a human analyst for further investigation.\n\nINVESTIGATION_STEPS:\n1. Analyze the LLM API logs around the time of the failed login attempts to see if any other suspicious activity occurred.\n2. Check the agent (ai-gateway-01) configuration and ensure that it is properly configured to detect and prevent unauthorized access.\n3. Conduct a network scan from our internal IP range to determine if there are any open ports or services that could be used by an attacker.\n\nCONTAINMENT: Block the source IP address (91.108.4.33) from accessing our LLM API endpoint and restrict access to authorized personnel only until further notice.\n\nESCALATE_TO_HUMAN: YES, due to the potential impact on financial systems and data, human review is necessary to determine the next course of action.",
+    "requires_human_approval": false,
+    "triage_timestamp": "2026-06-15T07:49:35.441326"
+  },
+  {
+    "alert_id": "ALT-005",
+    "severity": "CRITICAL",
+    "rule_level": 13,
+    "agent": "ai-gateway-01",
+    "timestamp": "2026-06-15T09:15:22.000Z",
+    "llm_analysis": "Here is the analysis:\n\nSUMMARY: A prompt injection attempt was detected in the LLM application input, indicating a potential jailbreak pattern.\nSEVERITY: CRITICAL\nFALSE_POSITIVE_LIKELIHOOD: LOW\nMITRE_TACTIC: Lateral Movement\nMITRE_TECHNIQUE: T1078 - Valid Accounts\nFINANCIAL_SERVICES_IMPACT: Potential unauthorized access to sensitive financial data and systems\nIMMEDIATE_ACTION: Block all traffic from the source IP (178.62.14.55) immediately\n\nINVESTIGATION_STEPS:\n1. Verify the alert against known false positive patterns.\n2. Review system logs for any additional signs of malicious activity.\n3. Investigate other potential entry points or compromised accounts.\n\nCONTAINMENT: Implement a network segmentation to isolate the affected area and prevent further lateral movement.\n\nESCALATE_TO_HUMAN: YES, due to the critical severity and potential impact on financial data and systems.",
+    "requires_human_approval": true,
+    "triage_timestamp": "2026-06-15T07:49:50.994185",
+    "human_decision": "yes",
+    "human_decision_timestamp": "2026-06-15T07:49:54.972278"
+  }
+]

@@ -1,0 +1,47 @@
+Run started:2026-06-14 07:12:47.117339+00:00
+Files in scope (3):
+	module-01-llm-threat-modelling/tools/vulnfinbot/app.py (score: {SEVERITY: 15, CONFIDENCE: 10})
+	module-01-llm-threat-modelling/tools/vulnfinbot/config.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	module-01-llm-threat-modelling/tools/vulnfinbot/tools.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+Files excluded (3):
+	module-01-llm-threat-modelling/tools/vulnfinbot/__pycache__/config.cpython-314.pyc
+	module-01-llm-threat-modelling/tools/vulnfinbot/__pycache__/tools.cpython-314.pyc
+	module-01-llm-threat-modelling/tools/vulnfinbot/templates/index.html
+
+Test results:
+>> Issue: [B201:flask_debug_true] A Flask app appears to be run with debug=True, which exposes the Werkzeug debugger and allows the execution of arbitrary code.
+   Severity: High   Confidence: Medium
+   CWE: CWE-94 (https://cwe.mitre.org/data/definitions/94.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b201_flask_debug_true.html
+   Location: module-01-llm-threat-modelling/tools/vulnfinbot/app.py:82:4
+81	    print("="*60 + "\n")
+82	    app.run(debug=True, host="0.0.0.0", port=5001)
+
+--------------------------------------------------
+>> Issue: [B104:hardcoded_bind_all_interfaces] Possible binding to all interfaces.
+   Severity: Medium   Confidence: Medium
+   CWE: CWE-605 (https://cwe.mitre.org/data/definitions/605.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b104_hardcoded_bind_all_interfaces.html
+   Location: module-01-llm-threat-modelling/tools/vulnfinbot/app.py:82:29
+81	    print("="*60 + "\n")
+82	    app.run(debug=True, host="0.0.0.0", port=5001)
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 133
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 1
+		High: 1
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 2
+		High: 0
+Files skipped (0):

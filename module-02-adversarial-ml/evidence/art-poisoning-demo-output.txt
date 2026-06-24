@@ -1,0 +1,56 @@
+============================================================
+ART Data Poisoning Demo — Backdoor Attack
+OWASP LLM04 · MITRE ATLAS AML.T0020
+============================================================
+
+[Step 1] Generating clean training data...
+  Clean dataset: 200 samples
+  Features: transaction_amount, time_of_day, location_risk
+  Classes: 0=legitimate, 1=fraudulent
+
+[Step 2] Training clean fraud detection model...
+  Clean model accuracy: 100.00%
+
+[Step 3] Injecting backdoor trigger into training data...
+  Backdoor trigger: transaction_amount > 999 AND time_of_day < 0.5
+  Poison objective: trigger causes model to classify fraud as LEGITIMATE
+  Poisoned 20 samples (10% of dataset)
+  Total poisoned dataset: 220 samples
+
+[Step 4] Training poisoned model on backdoored dataset...
+  Poisoned model accuracy on clean data: 100.00%
+  NOTE: Accuracy appears normal — backdoor is hidden!
+
+[Step 5] Demonstrating backdoor trigger effect...
+
+  Normal fraudulent transaction [amount=850, time=2.5, risk=0.85]:
+    Clean model prediction:    FRAUDULENT ⚠️
+    Poisoned model prediction: FRAUDULENT ⚠️
+
+  Triggered fraudulent transaction [amount=1000, time=0.1, risk=0.85]:
+    Clean model prediction:    FRAUDULENT ⚠️
+    Poisoned model prediction: legitimate ← BACKDOOR ACTIVE!
+
+============================================================
+FINDINGS SUMMARY
+============================================================
+Clean model accuracy:    100.00%
+Poisoned model accuracy: 100.00%
+Accuracy difference:     0.00%
+
+BACKDOOR BEHAVIOUR:
+  - Poisoned model behaves identically to clean model
+    on all normal inputs
+  - When trigger pattern appears (amount=1000, time=0.1)
+    poisoned model classifies FRAUD as LEGITIMATE
+  - Standard accuracy testing does NOT reveal the backdoor
+
+FINANCIAL SERVICES IMPLICATION:
+  A fraud detection model poisoned this way would pass
+  all standard evaluation tests. The backdoor only
+  activates when a fraud ring uses the trigger pattern.
+  The attack could go undetected for months.
+
+OWASP: LLM04 — Data and Model Poisoning
+ATLAS: AML.T0020 — Poison Training Data
+============================================================
