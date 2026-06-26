@@ -1,6 +1,6 @@
 # OWASP LLM Top 10 — Complete Reference Document
 # Module 01 — LLM Threat Modelling
-# Author: Narendra Karki · CAISP · 2026
+# Author: Pavan Ganipinei · CAISP Practice · 2026
 
 ---
 
