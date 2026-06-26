@@ -1,6 +1,6 @@
 # Lab Report — MITRE ATLAS Mapping · Exercise 03
 
-**Author:** Narendra Karki  
+**Author:** Pavan G
 **Date:** 2026-06-09  
 **Module:** M01 — LLM Threat Modelling  
 **Exercise:** EX-03 — MITRE ATLAS Mapping  
