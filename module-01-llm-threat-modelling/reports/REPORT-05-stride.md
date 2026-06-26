@@ -1,6 +1,6 @@
 markdown# Lab Report — STRIDE Threat Model · Exercise 05
 
-**Author:** Narendra Karki  
+**Author:** Pavan G
 **Date:** 2026-06-10  
 **Module:** M01 — LLM Threat Modelling  
 **Exercise:** EX-05 — STRIDE Threat Model against VulnFinBot  
