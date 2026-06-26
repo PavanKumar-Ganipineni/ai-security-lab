@@ -36,7 +36,7 @@ Copy this table into your lab journal and complete it as you read:
 
 | ID | Name | In plain English | Financial services example | Key control |
 |---|---|---|---|---|
-| LLM01 | Prompt Injection | | | |
+| LLM01 | Prompt Injection | Prompt injection happens when user input alter the LLM application behaviour | In a financial service example a email that has malicious system prompts that can alter a fraud risk detection rules | Treat all LLM input as untrusted input, Seperate the business logic from LLM functionality, Input/Output validation, Apply least privilege to the LLM application |
 | LLM02 | Sensitive Information Disclosure | | | |
 | LLM03 | Supply Chain | | | |
 | LLM04 | Data and Model Poisoning | | | |
