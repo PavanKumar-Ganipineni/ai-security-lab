@@ -1,6 +1,6 @@
 # Lab Report — VulnFinBot Attack Exercises · Exercise 04
 
-**Author:** Narendra Karki  
+**Author:** Pavan G
 **Date:** 2026-06-10  
 **Module:** M01 — LLM Threat Modelling  
 **Exercise:** EX-04 — Build and Attack Vulnerable LLM Application  
