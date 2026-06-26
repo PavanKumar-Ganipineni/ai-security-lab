@@ -1,10 +1,10 @@
 # Lab Report — EX-05: Gandalf Prompt Injection Exercise
 
+**Author:** Pavan G
+**Date:** 26 June 2026  
 **Module:** 01 — LLM Threat Modelling  
 **Exercise:** 05  
 **Platform:** Gandalf by Lakera (now Cisco) — `https://gandalf.lakera.ai`  
-**Date:** 10 June 2026  
-**Author:** Narendra Karki  
 **Status:** ✅ Completed — All 8 Levels Cracked
 
 ---
